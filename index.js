@@ -7,11 +7,9 @@ exports.handler = async (event) => {
         indices.add(randIndex);
     }
     const selections = Array.from(indices).map(i => restaurants[i]);
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify({
-            'selections': selections,
-        }),
-    };
+    let response = "Today's lunch selections:\n"
+    for (const item of selections) {
+        response = `${response}\n${item.name} - ${item.link}`;
+    }
     return response;
 };
